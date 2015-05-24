@@ -1,8 +1,8 @@
 var gulp = require('gulp');
 var deploy = require('gulp-gh-pages');
-var options = {};
+// var options = {};
 gulp.task('deploy', function() {
   return gulp.src('./preview/**/*')
-    .pipe(deploy(options));
+    .pipe(deploy());
 });
 gulp.task('default', ['deploy']);
