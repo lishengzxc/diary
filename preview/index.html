@@ -65,10 +65,35 @@
 				</div>
         <div id='readme' style='width:70%;margin-left:20%;'>
           	<article class='markdown-body'>
-            	<h1 id="1">1</h1>
-<h2 id="2">2</h2>
-<h3 id="3">3</h3>
-
+            	<h1 id="2015-5-24">2015-5-24</h1>
+<h2 id="-">事件级联</h2>
+<p>当用户在移动装置上点击元素时，浏览器将激活事件。这个动作通常会触发一系列如下事件：<code>touchstart</code> → <code>touchend</code> → <code>mouseover</code> → <code>mousemove</code> → <code>mousedown</code> → <code>mouseup</code> → <code>click</code>。</p>
+<h2 id="-">移动端左右滑动</h2>
+<pre><code>var startX, startY, endX, endY;
+pBox.addEventListener(&#39;touchstart&#39;, function (e) {
+    var touch = e.touches[0];
+          startY = touch.pageY;
+          startX = touch.pageX;
+}, false)
+pBox.addEventListener(&#39;touchmove&#39;, function (e) {
+    var touch = e.touches[0];
+    endX = touch.pageX;
+    endY = touch.pageY;
+}, false)
+pBox.addEventListener(&#39;touchend&#39;, function (e) {
+    if ((startX - endX) &gt; 0) {
+        for (var i = 0; i &lt; pList.length; i++) {
+            pList[i].style.left = parseInt(pList[i].style.left) - 100 + &#39;%&#39;;
+            // console.log(parseInt(pList[i].style.left));
+        }
+    } else if (startX - endX &lt; 0) {
+        for (var i = 0; i &lt; pList.length; i++) {
+            pList[i].style.left = parseInt(pList[i].style.left) + 100 + &#39;%&#39;;
+            // console.log(parseInt(pList[i].style.left));
+        }
+    }
+}, false);
+</code></pre>
           	</article>
         </div>
 		</div>
