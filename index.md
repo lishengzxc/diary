@@ -31,4 +31,4 @@ pBox.addEventListener('touchend', function (e) {
 #2015-5-25
 ##【网页设计简史】
 从早年的画表格、css的出现、flash动画，到后来的css+div定位、responsive design、flat design。  
-[http://blog.froont.com/brief-history-of-web-design-for-designers/]http://blog.froont.com/brief-history-of-web-design-for-designers/
+[http://blog.froont.com/brief-history-of-web-design-for-designers/](http://blog.froont.com/brief-history-of-web-design-for-designers/)
