@@ -33,5 +33,7 @@ pBox.addEventListener('touchend', function (e) {
 从早年的画表格、css的出现、flash动画，到后来的css+div定位、responsive design、flat design。  
 [http://blog.froont.com/brief-history-of-web-design-for-designers/](http://blog.froont.com/brief-history-of-web-design-for-designers/)
 #2015-5-26
-##osx git 自动补全
+##osx `git`自动补全
 [http://blog.csdn.net/zhangt85/article/details/43611997](http://blog.csdn.net/zhangt85/article/details/43611997)
+##`npm` 安装 `express`
+`npm install -g express-generator`
