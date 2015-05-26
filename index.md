@@ -34,4 +34,4 @@ pBox.addEventListener('touchend', function (e) {
 [http://blog.froont.com/brief-history-of-web-design-for-designers/](http://blog.froont.com/brief-history-of-web-design-for-designers/)
 #2015-5-26
 ##osx git 自动补全
-[http://blog.csdn.net/zhangt85/article/details/43611997]http://blog.csdn.net/zhangt85/article/details/43611997
+[http://blog.csdn.net/zhangt85/article/details/43611997](http://blog.csdn.net/zhangt85/article/details/43611997)
