@@ -37,3 +37,21 @@ pBox.addEventListener('touchend', function (e) {
 [http://blog.csdn.net/zhangt85/article/details/43611997](http://blog.csdn.net/zhangt85/article/details/43611997)
 ##`npm` 安装 `express`
 `npm install -g express-generator`
+#2015-5-27
+##页面可见性API属性和事件  
+- `document.hidden`: Boolean值，表示当前页面可见还是不可见  
+- `document.visibilityState`: 返回当前页面的可见状态。
+ 1. `hidden`
+ 2. `visible`
+ 3. `prerender`
+ 4. `preview`  
+- `visibilitychange`
+```javascript
+document.addEventListener("visibilitychange", function() {
+	if (document.hidden) {
+		document.title = 1;
+	} else {
+		document.title = 2;
+	}
+})
+```
