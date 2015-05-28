@@ -55,3 +55,92 @@ document.addEventListener("visibilitychange", function() {
 	}
 })
 ```
+#2015-5-28
+##Retina屏的移动设备如何实现真正1px的线
+###iOS 8 和 OS X Yosemite
+```css
+div {
+	border: 1px solid #000;
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+	div {
+		border: 0.5px
+	}
+}
+```
+###兼容其他版本的Retina设备方案（ios）
+```javascript
+// 能力检测
+if (window.devicePixelRatio && window.devicePixelRatio >= 2) {
+	var elem = document.createElement('div');
+	elem.style.border = '.5px solid transparent';
+	document.body.appendChild(elem);
+	if (elem.offsetHeight == 1) {
+		document.querySelector('html').classList.add('hairlines');
+	}
+	document.body.removeChild(elem);
+}
+```
+```css
+div {
+	border: 1px solid #bbb;
+}
+.hairlines div {
+	border-width: 0.5px;
+}
+```
+###兼容android
+淘宝 M 站是通过 viewport + rem 实现的  
+在devicePixelRatio = 2 时，输出 viewport
+```html
+<meta name="viewport" content="initial-scale=0.5, miximum-scale=0.5, minimun-scale=0.5, user-scaleable=no">
+```
+在devicePixelRatio = 3 时，输出 viewport  
+```html
+<meta name="viewport" content="initial-scale=0.3333333333, miximum-scale=0.3333333333, minimun-scale=0.3333333333, user-scaleable=no">
+```
+###兼容的另一个方案 `伪类 + transform`
+原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位  
+####单条border
+```css
+.hairlines li {
+	position: relative;
+	border: none;
+}
+.hairline li:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	background: #000;
+	width: 100%;
+	height: 1px;
+	transform: scaleY(0.5);
+}
+```
+####四条border
+```
+.hairlines li {
+	position: relative;
+	margin-bottom: 20px;
+	border: none;
+}
+.hairline li:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 1px solid #000;
+	box-sizing: border-box;
+	width: 200%;
+	height: 200%;
+	transform: scale(0.5);
+	transform-origin: left top;
+}
+```
+####需要能力检测，该方案支持圆角
+```
+if (window.devicePixelRatio && window.devicePixelRatio >= 2) {
+	document.querySelector('ul').className = 'hairlines';
+})
+```
+
