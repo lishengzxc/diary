@@ -194,8 +194,30 @@ if (window.devicePixelRatio &amp;&amp; window.devicePixelRatio &gt;= 2) {
 <pre><code>if (window.devicePixelRatio &amp;&amp; window.devicePixelRatio &gt;= 2) {
   document.querySelector(&#39;ul&#39;).className = &#39;hairlines&#39;;
 })
-</code></pre></li>
+</code></pre><h1 id="2015-5-29">2015-5-29</h1>
+<h2 id="-express-bodyparser-"><code>express.bodyParser()</code>已经不再支持了</h2>
+</li>
 </ul>
+<p>需要安装body-parser模块</p>
+<pre><code>npm install body-parser
+</code></pre><p>然后使用代码为：</p>
+<pre><code>app.use(require(&#39;body-parser&#39;).urlencoded({extended: true}))
+</code></pre><h2 id="-embed-"><code>&lt;embed&gt;</code>的一些笔记</h2>
+<h3 id="-type-"><code>type</code>属性</h3>
+<pre><code>&lt;embed src=&quot;helloworld.swf&quot; type=&quot;application/x-shockwave-flash&quot; /&gt;
+</code></pre><h3 id="-allowscriptaccess-"><code>allowscriptaccess</code>权限用法</h3>
+<p>使用 allowscriptaccess 使 Flash 应用程序可与其所在的 HTML 页通信。此参数是必需的，因为 fscommand() 和 getURL() 操作可能导致 JavaScript 使用 HTML 页的权限，而该权限可能与 Flash 应用程序的权限不同。这与跨域安全性有着重要关系。
+也就是说如果swf在blog.80s.net.cn下，但是页面在fmail.80s.net.cn下，想用getURL或者fscommand调用页面中的js是不可以的
+除非你将value设置为always
+value参数说明：</p>
+<ul>
+<li>always 允许随时执行脚本操作。</li>
+<li>never 禁止所有脚本执行操作。</li>
+<li>samedomain 只有在 Flash 应用程序来自与 HTML 页相同的域时才允许执行脚本操作。</li>
+</ul>
+<p>所有 HTML 发布模板使用的默认值均为 samedomain。</p>
+<h3 id="flash-wmode-">flash <code>wmode</code>参数详解</h3>
+<p><a href="http://www.blueidea.com/tech/web/2009/6469.asp">http://www.blueidea.com/tech/web/2009/6469.asp</a></p>
 
           	</article>
         </div>

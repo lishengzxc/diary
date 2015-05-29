@@ -143,4 +143,31 @@ if (window.devicePixelRatio && window.devicePixelRatio >= 2) {
 	document.querySelector('ul').className = 'hairlines';
 })
 ```
+#2015-5-29
+##`express.bodyParser()`已经不再支持了
 
+需要安装body-parser模块
+```
+npm install body-parser
+```
+然后使用代码为：
+```
+app.use(require('body-parser').urlencoded({extended: true}))
+```
+##`<embed>`的一些笔记
+###`type`属性
+```
+<embed src="helloworld.swf" type="application/x-shockwave-flash" />
+```
+###`allowscriptaccess`权限用法
+使用 allowscriptaccess 使 Flash 应用程序可与其所在的 HTML 页通信。此参数是必需的，因为 fscommand() 和 getURL() 操作可能导致 JavaScript 使用 HTML 页的权限，而该权限可能与 Flash 应用程序的权限不同。这与跨域安全性有着重要关系。
+也就是说如果swf在blog.80s.net.cn下，但是页面在fmail.80s.net.cn下，想用getURL或者fscommand调用页面中的js是不可以的
+除非你将value设置为always
+value参数说明：
+- always 允许随时执行脚本操作。
+- never 禁止所有脚本执行操作。
+- samedomain 只有在 Flash 应用程序来自与 HTML 页相同的域时才允许执行脚本操作。
+
+所有 HTML 发布模板使用的默认值均为 samedomain。
+###flash `wmode`参数详解
+[http://www.blueidea.com/tech/web/2009/6469.asp](http://www.blueidea.com/tech/web/2009/6469.asp)
