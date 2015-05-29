@@ -55,6 +55,7 @@ document.addEventListener("visibilitychange", function() {
 	}
 })
 ```
+
 #2015-5-28
 ##Retina屏的移动设备如何实现真正1px的线
 ###iOS 8 和 OS X Yosemite

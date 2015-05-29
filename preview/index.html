@@ -120,84 +120,87 @@ pBox.addEventListener(&#39;touchend&#39;, function (e) {
   }
 })
 </code></pre>
+</li>
+</ul>
 <h1 id="2015-5-28">2015-5-28</h1>
 <h2 id="retina-1px-">Retina屏的移动设备如何实现真正1px的线</h2>
 <h3 id="ios-8-os-x-yosemite">iOS 8 和 OS X Yosemite</h3>
 <pre><code class="lang-css">div {
-  border: 1px solid #000;
+    border: 1px solid #000;
 }
 @media (-webkit-min-device-pixel-ratio: 2) {
-  div {
-      border: 0.5px
-  }
+    div {
+        border: 0.5px
+    }
 }
 </code></pre>
 <h3 id="-retina-ios-">兼容其他版本的Retina设备方案（ios）</h3>
 <pre><code class="lang-javascript">// 能力检测
 if (window.devicePixelRatio &amp;&amp; window.devicePixelRatio &gt;= 2) {
-  var elem = document.createElement(&#39;div&#39;);
-  elem.style.border = &#39;.5px solid transparent&#39;;
-  document.body.appendChild(elem);
-  if (elem.offsetHeight == 1) {
-      document.querySelector(&#39;html&#39;).classList.add(&#39;hairlines&#39;);
-  }
-  document.body.removeChild(elem);
+    var elem = document.createElement(&#39;div&#39;);
+    elem.style.border = &#39;.5px solid transparent&#39;;
+    document.body.appendChild(elem);
+    if (elem.offsetHeight == 1) {
+        document.querySelector(&#39;html&#39;).classList.add(&#39;hairlines&#39;);
+    }
+    document.body.removeChild(elem);
 }
 </code></pre>
 <pre><code class="lang-css">div {
-  border: 1px solid #bbb;
+    border: 1px solid #bbb;
 }
 .hairlines div {
-  border-width: 0.5px;
+    border-width: 0.5px;
 }
 </code></pre>
 <h3 id="-android">兼容android</h3>
-淘宝 M 站是通过 viewport + rem 实现的<br>在devicePixelRatio = 2 时，输出 viewport<pre><code class="lang-html">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=0.5, miximum-scale=0.5, minimun-scale=0.5, user-scaleable=no&quot;&gt;
+<p>淘宝 M 站是通过 viewport + rem 实现的<br>在devicePixelRatio = 2 时，输出 viewport</p>
+<pre><code class="lang-html">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=0.5, miximum-scale=0.5, minimun-scale=0.5, user-scaleable=no&quot;&gt;
 </code></pre>
-在devicePixelRatio = 3 时，输出 viewport  <pre><code class="lang-html">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=0.3333333333, miximum-scale=0.3333333333, minimun-scale=0.3333333333, user-scaleable=no&quot;&gt;
+<p>在devicePixelRatio = 3 时，输出 viewport  </p>
+<pre><code class="lang-html">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=0.3333333333, miximum-scale=0.3333333333, minimun-scale=0.3333333333, user-scaleable=no&quot;&gt;
 </code></pre>
 <h3 id="-transform-">兼容的另一个方案 <code>伪类 + transform</code></h3>
-原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位  <h4 id="-border">单条border</h4>
+<p>原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位  </p>
+<h4 id="-border">单条border</h4>
 <pre><code class="lang-css">.hairlines li {
-  position: relative;
-  border: none;
+    position: relative;
+    border: none;
 }
 .hairline li:after {
-  content: &#39;&#39;;
-  position: absolute;
-  left: 0;
-  background: #000;
-  width: 100%;
-  height: 1px;
-  transform: scaleY(0.5);
+    content: &#39;&#39;;
+    position: absolute;
+    left: 0;
+    background: #000;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
 }
 </code></pre>
 <h4 id="-border">四条border</h4>
 <pre><code>.hairlines li {
-  position: relative;
-  margin-bottom: 20px;
-  border: none;
+    position: relative;
+    margin-bottom: 20px;
+    border: none;
 }
 .hairline li:after {
-  content: &#39;&#39;;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 1px solid #000;
-  box-sizing: border-box;
-  width: 200%;
-  height: 200%;
-  transform: scale(0.5);
-  transform-origin: left top;
+    content: &#39;&#39;;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: left top;
 }
 </code></pre><h4 id="-">需要能力检测，该方案支持圆角</h4>
 <pre><code>if (window.devicePixelRatio &amp;&amp; window.devicePixelRatio &gt;= 2) {
-  document.querySelector(&#39;ul&#39;).className = &#39;hairlines&#39;;
+    document.querySelector(&#39;ul&#39;).className = &#39;hairlines&#39;;
 })
 </code></pre><h1 id="2015-5-29">2015-5-29</h1>
 <h2 id="-express-bodyparser-"><code>express.bodyParser()</code>已经不再支持了</h2>
-</li>
-</ul>
 <p>需要安装body-parser模块</p>
 <pre><code>npm install body-parser
 </code></pre><p>然后使用代码为：</p>
