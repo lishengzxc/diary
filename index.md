@@ -172,3 +172,22 @@ value参数说明：
 所有 HTML 发布模板使用的默认值均为 samedomain。
 ###flash `wmode`参数详解
 [http://www.blueidea.com/tech/web/2009/6469.asp](http://www.blueidea.com/tech/web/2009/6469.asp)
+
+#2015-5-30
+##`div`内图片垂直居中
+```css
+div {
+	width:600px; height:600px;
+}
+span {
+	height: 100%; display: inline-block; vertical-align: middle;
+}
+img {
+	width: 300px; height: 300px; vertical-align: middle;
+}
+```
+```html
+<div><span></span><img src="..."></div>
+```
+##CSS3 object-position/object-fit属性
+[http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/](http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/)
