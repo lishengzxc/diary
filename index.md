@@ -191,3 +191,28 @@ img {
 ```
 ##CSS3 object-position/object-fit属性
 [http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/](http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/)
+
+#2015-5-31
+##`git`删除分支
+###本地
+```
+git branch -d <name>
+```
+###远程
+```
+git push origin :<name>
+```
+##`git`版本回退
+```
+git reset --hard commit_id
+```
+[http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000)
+##`git`回退修改
+###工作区修改
+```
+git checkout -- file
+```
+###暂存区修改
+```
+git reset HEAD file
+```
