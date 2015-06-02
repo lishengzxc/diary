@@ -216,3 +216,34 @@ git checkout -- file
 ```
 git reset HEAD file
 ```
+
+#2015-6-2
+##`flex`兼容
+```
+.foo{
+  display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box; /* Firefox 17- */
+  display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex; /* Firefox 18+ */
+  display: -ms-flexbox; /* IE 10 */
+  display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */}
+```
+
+##`getArgs()`
+```
+function getArgs() {
+    var args = {};
+    var query = location.search.substring(1);
+    var pairs = query.split("&");
+
+    for(var i = 0; i < pairs.length; i++) {
+        var pos = pairs[i].indexOf('=');
+        if (pos == -1) continue;
+            var argname = pairs[i].substring(0,pos);
+            var value = pairs[i].substring(pos+1);
+            value = decodeURIComponent(value);
+            args[argname] = value;
+    }
+    return args;
+}
+```
