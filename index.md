@@ -247,3 +247,11 @@ function getArgs() {
     return args;
 }
 ```
+
+#2015-6-4
+##`clearfix`
+```
+.clearfix:after {content:"."; display:block; height:0; visibility:hidden; clear:both; }
+
+.clearfix { *zoom:1; }
+```
