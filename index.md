@@ -255,3 +255,18 @@ function getArgs() {
 
 .clearfix { *zoom:1; }
 ```
+
+#2015-6-6
+##IE6~8部署`Function.prototype.bind()`
+```
+if (!function() {}.bind) {
+    Function.prototype.bind = function(context) {
+        var self = this
+            , args = Array.prototype.slice.call(arguments);
+
+        return function() {
+            return self.apply(context, args.slice(1));
+        }
+    };
+}
+```
