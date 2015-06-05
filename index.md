@@ -270,3 +270,7 @@ if (!function() {}.bind) {
     };
 }
 ```
+##将类数组转化为真实数组
+```
+trueArr = Array.prototype.slice.call(likeArr);
+```
