@@ -290,3 +290,94 @@ trueArr = Array.prototype.slice.call(likeArr);
 ###vmin
 相对于视口的宽度或高度中较小的那个。其中最小的那个被均分为100单位的vmin
 
+#2015-6-8
+##css3动画移动端过场效果
+```
+.slide.in {
+  -webkit-animation-name: slideinfromright;
+  animation-name: slideinfromright;
+}
+.slide.out {
+  -webkit-animation-name: slideouttoleft;
+  animation-name: slideouttoleft;
+}
+.slide.reverse.out {
+  -webkit-animation-name: slideouttoright;
+  animation-name: slideouttoright;
+}
+.slide.reverse.in {
+  -webkit-animation-name: slideinfromleft;
+  animation-name: slideinfromleft;
+}
+
+/* keyframes for slidein from sides */
+@-webkit-keyframes slideinfromright {
+  from { -webkit-transform: translate3d(100%,0,0); }
+  to { -webkit-transform: translate3d(0,0,0); }
+}
+@keyframes slideinfromright {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@-webkit-keyframes slideinfromleft {
+  from { -webkit-transform: translate3d(-100%,0,0); }
+  to { -webkit-transform: translate3d(0,0,0); }
+}
+@keyframes slideinfromleft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+/* keyframes for slideout to sides */
+@-webkit-keyframes slideouttoleft {
+  from { -webkit-transform: translate3d(0,0,0); }
+  to { -webkit-transform: translate3d(-100%,0,0); }
+}
+@keyframes slideouttoleft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@-webkit-keyframes slideouttoright {
+  from { -webkit-transform: translate3d(0,0,0); }
+  to { -webkit-transform: translate3d(100%,0,0); }
+}
+@keyframes slideouttoright {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+/* chrysanthemum loading effect */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.recommendItem {
+
+}
+
+.out {
+  display: none;
+}
+
+.in, .out {
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.in {
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-duration: 350ms;
+  animation-timing-function: ease-in;
+  animation-duration: 350ms;
+}
+.out {
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-duration: 350ms;
+  animation-timing-function: ease-in;
+  animation-duration: 350ms;
+}
+```
