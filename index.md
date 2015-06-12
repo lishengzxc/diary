@@ -381,3 +381,9 @@ trueArr = Array.prototype.slice.call(likeArr);
   animation-duration: 350ms;
 }
 ```
+
+#2015-6-12
+##angular中指令遇到的坑
+[http://segmentfault.com/q/1010000002897406](http://segmentfault.com/q/1010000002897406)
+解决方案
+link中，用timeout延时操作下
