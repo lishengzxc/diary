@@ -387,3 +387,26 @@ trueArr = Array.prototype.slice.call(likeArr);
 [http://segmentfault.com/q/1010000002897406](http://segmentfault.com/q/1010000002897406)
 解决方案
 link中，用timeout延时操作下
+##触摸事件级链
+
+1.滑动
+```
+touchstart touchmove touchend scroll
+```
+2. 缩放
+```
+touchstart touchmove touchend scorll resize
+```
+3. 双触
+```
+touchstart 两次touchend scroll resize
+```
+4. 按住
+```
+touchstart touchend (contentmenu)
+```
+
+触摸事件有一个鼠标事件没有的特性 touchList（记录多个触点）
+
+> clientX/pageX的区别在于前者相对于视觉视口，后者是布局视口，布局视口是可以滚动的
+
