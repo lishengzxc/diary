@@ -403,6 +403,19 @@ img {
 <p><a href="http://segmentfault.com/q/1010000002897406">http://segmentfault.com/q/1010000002897406</a>
 解决方案
 link中，用timeout延时操作下</p>
+<h2 id="-">触摸事件级链</h2>
+<h3 id="-">滑动</h3>
+<pre><code>touchstart touchmove touchend scroll
+</code></pre><h3 id="-">缩放</h3>
+<pre><code>touchstart touchmove touchend scorll resize
+</code></pre><h3 id="-">双触</h3>
+<pre><code>touchstart 两次touchend scroll resize
+</code></pre><h3 id="-">按住</h3>
+<pre><code>touchstart touchend (contentmenu)
+</code></pre><h3 id="-touchlist-">触摸事件有一个鼠标事件没有的特性 touchList（记录多个触点）</h3>
+<blockquote>
+<h5 id="clientx-pagex-">clientX/pageX的区别在于前者相对于视觉视口，后者是布局视口，布局视口是可以滚动的</h5>
+</blockquote>
 
           	</article>
         </div>
