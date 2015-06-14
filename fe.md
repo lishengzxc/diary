@@ -31,9 +31,9 @@ javascript里，使用的是词法作用域（静态）函数是第一公民也�
 #####this
 this指的拥有是当前运行环境，但是可以通过call/apply更改
 #####call/apply
-他们的作用相同，用来代替另一个对象调用一个方法，区别在于他们的第二个参数
-call是字符串序列，
-apply是数组
+他们的作用相同，用来代替另一个对象调用一个方法，区别在于他们的第二个参数  
+call是字符串序列，  
+apply是数组  
 
 ####对象
 可以说得太多了
@@ -52,14 +52,14 @@ var p1 = new Person('lisheng');
 
 ####内置对象
 #####Array
-Array上也有许多的有用的方法，函数式编程可以用多很多的ES5中新增的许多数组方法（forEach, map, filiter, every, some, reduce，暂时只知道区别，没在实际项目中用过）
-slice()数组切片 **Array.prototype.slice.call() 转化类数组**
-splice()，数组的增删都能用大
+Array上也有许多的有用的方法，函数式编程可以用多很多的ES5中新增的许多数组方法（forEach, map, filiter, every, some, reduce，暂时只知道区别，没在实际项目中用过）  
+slice()数组切片 **Array.prototype.slice.call() 转化类数组**  
+splice()，数组的增删都能用大  
 最近刚整理过Array [http://www.lishengcn.cn/archives/207.html](http://www.lishengcn.cn/archives/207.html)
 #####函数对象
 需要好好的理解的是三个方法
-call()
-aplly()
+call()  
+aplly()  
 bind()  ps: 低版本IE不支持
 
 ```
@@ -84,7 +84,7 @@ if (!function() {}.bind) {
 ####block
 块级元素，可设置狂宽高，占一整行，如果需要将元素横向排列float或者position或者flex（float flex常用）
 ####inline-block
-行内块级元素，可以设置宽高的行内元素，需要主要的是设置了这种属性的元素有默认的边距。有方法去除
+行内块级元素，可以设置宽高的行内元素，需要主要的是设置了这种属性的元素有默认的边距。有方法去除  
 
 ```
 <!-- <li>设置了 display: inline-block -->
@@ -96,7 +96,7 @@ if (!function() {}.bind) {
 
 ####float，clear
 浮动，部分脱离文档流
-去除浮动，闭合浮动
+去除浮动，闭合浮动  
 float后的元素加clear：both
 float的父元素失去高度 overflow: hidden
 
@@ -134,7 +134,7 @@ animation的属性和transition都类似，他不需要触发，需要定义关�
 ##WEB API
 ###DOMAPI
 可以说得很多了，这里根据winter大大的提纲来写吧
-####insertBefor() / appendChild
+####insertBefor() / appendChild 
 他们都是用来将创建的节点(`createElement() / createTextNode()`)插入进文档的
 他们的区别：
 
@@ -143,17 +143,17 @@ animation的属性和transition都类似，他不需要触发，需要定义关�
 
 自己实现一个insertAfter()
 ```
-function insertAfter(newElement, targetElement){
-	var parent = targetElement.parentNode;
-	if (parent.lastChild == targetElement) {
-	// 如果最后的节点是目标元素，则直接添加。因为默认是最后
-	parent.appendChild(newElement);
-}
-else {
-	parent.insertBefore(newElement, targetElement.nextSibling);
-	//如果不是，则插入在目标元素的下一个兄弟节点 的前面。也就是目标元素的后面
-	}
-}
+function insertAfter(newElement, targetElement){ 
+	var parent = targetElement.parentNode; 
+	if (parent.lastChild == targetElement) { 
+	// 如果最后的节点是目标元素，则直接添加。因为默认是最后 
+	parent.appendChild(newElement); 
+} 
+else { 
+	parent.insertBefore(newElement, targetElement.nextSibling); 
+	//如果不是，则插入在目标元素的下一个兄弟节点 的前面。也就是目标元素的后面 
+	} 
+} 
 ```
 ###childNodes / parentNode
 ####childNodes
@@ -163,11 +163,11 @@ else {
 
 ###事件
 ####冒泡和捕获
-说得不要再说得问题了，事件3个阶段 捕获>处理>冒泡
-IE的模型是冒泡，firebox捕获
-w3c标准都支持，用的比较多得是冒泡，可以做事件代理
+说得不要再说得问题了，事件3个阶段 捕获>处理>冒泡  
+IE的模型是冒泡，firebox捕获  
+w3c标准都支持，用的比较多得是冒泡，可以做事件代理  
 `addEventListener()` 第三个参数为false表示事件为冒泡模型
-有的时候需要阻止冒泡，阻止一些事件默认行为，事件对象都有相应方法
+有的时候需要阻止冒泡，阻止一些事件默认行为，事件对象都有相应方法  
 `e.preventDefault() / e.returnValue()` 阻止默认行为
 `e.stopPropagation()`阻止冒泡
 PS: 事件对象的获取
@@ -187,11 +187,88 @@ obj.addEventListener('customEvent', function(){
 }, false);
 ```
 ###CSSOM
-这个词我是很陌生的，根据winter大大的思维导图，我学习理解了下
+这个词我是很陌生的，根据winter大大的思维导图，我学习理解了下，我的应用场景不多，有弹窗，什么的，我们为了保持产品的UI统一都会选择自己去模拟一个弹窗，确认等等。
 
 
 ###canvas
-画布，学习过，了解一些canvas的基本api，canvas画图的过程主要就是画路径，然后描边框，填充，canvas也有事件
-（这个暂时没有使用过，确实比较陌生，我正打算用canvas来模拟一些表单控件来掌握canvas）
-
+暂时只停留在了解这么一个东西的阶段，知道一些他的应用场景，没怎么用过，不过我打算用canvas实现几个表单控件，来学习canvas
 ##HTML
+###viewport
+这个属性主要是主要是应用在移动web开发上的，是为了解决移动端屏幕大小固定，然而分辨率不一的问题，同时设置一些缩放属性，让用户无法缩放视口。
+移动端的web开发还需要注意一些事件，比如touch和mouse事件
+###语义化
+[http://www.lishengcn.cn/archives/37.html](http://www.lishengcn.cn/archives/37.html)
+
+###form表单
+form里面有许多控件，HTML5里面新增加了许多新的控件，比如  
+
+1. email url number range date serch
+2. 同时也未他们增加了一些新的选择器CSS4选择器[http://www.ido321.com/1590.html](http://www.ido321.com/1590.html) ps:未完全支持
+
+
+##HTTP
+###状态码
+这个网络上的又很多，我自己总结下来：
+- 1xx 不怎么用到  
+- 2xx 表示没什么问题
+- 302 重定向 跳转了（服务器告诉你跳转）
+- 304 读的是缓冲资源
+- 404 客户端错误 用户访问的资源不存在
+- 5xx 服务器端错误，可能是一些逻辑上的错误，硬件上配置的错误
+
+###头
+####allow-cross-domain
+用来解决跨域问题，默认情况下，浏览器是不允许脚本去访问跨域的资源的，怎么判断跨域太简单了，不说了，过去的做法是使用jsonp去访问跨域资源，现在可以设置老控制谁能跨域访问我
+####expires, cache
+这是属性能够告诉浏览器我的页面是否缓存  
+HTML5有离线缓存功能，可以和本地存储搭配使用。
+####方法
+- GET：一般请求资源都是get（css, js...），如果有参数，参数在url里
+- HEAD：和GET一样，但是不含数据，有具体的使用场景，判断服务器端的资源在不再
+- POST：提交数据，参数不在url里，在请求内容里
+- DELETE/PUT：在做一些云储存中，用到过，PUT将资源存在在服务器端，DELETE删除服务器端的某个资源
+
+#能力
+##编程能力
+###理解和还原设计意图
+####垂直居中，自适应宽
+比较简单，不再说了
+####两列等高
+这里直接实现过一个这样的效果，我使用了两个方法，一个是用flex
+`align-items: stretch`
+这也是默认属性
+另一个方法是：
+```
+.content {
+    width: 980px;
+    overflow: hidden;
+}
+ 
+.post {
+    width: 320px;
+    float: left;
+    margin-bottom: -10000px;
+    padding-bottom: 10000px;
+    background: #fff;
+}
+```
+####补充
+是还原设计高如果有动画效果的时候，我会尽量用CSS3的动画，过渡变形，当然还有许多别的方案，canvas，svg，如果考虑兼容低版本IE，还是需要js去控制（setTimeout()）
+
+###算法
+####排序
+我掌握并了解冒泡和快排
+####搜索算法，动态规划
+这些我暂时完全不了解，但是我会学习并掌握
+
+###数据结构
+寒大大，列的这几个数据结构，我在实际开发中没有用过，但是我会在学习新前端知识的时候一样学习并掌握
+
+##架构能力
+这个，我觉得能力和开发经验有关系，主要的体现是，在实现某个功能和产品的时候的技术选型。暂时我觉得我没有这种能力，现在的我对学习新的知识有着浓厚的兴趣，react，angular
+
+##工程能力
+我觉得工程能力，首先一个就是编程能力，起码要能写的出代码，然后要能写出能拓展的代码，这就需要对一门语言的深刻理解，然后是写高效的代码，对项目可能会出现的瓶颈有预测，能再写之前，都能准备好，去绕考。  
+总的来说，我觉得 **写之前要想好**。
+
+
