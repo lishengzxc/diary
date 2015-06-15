@@ -416,7 +416,48 @@ link中，用timeout延时操作下</p>
 <blockquote>
 <h5 id="clientx-pagex-">clientX/pageX的区别在于前者相对于视觉视口，后者是布局视口，布局视口是可以滚动的</h5>
 </blockquote>
+<h1 id="2015-6-15">2015-6-15</h1>
+<h2 id="javascript-">javascript的继承方式</h2>
+<h3 id="-">构造函数绑定</h3>
+<pre><code>function Cat(name,color){
+　　　　Animal.apply(this, arguments);
+　　　　this.name = name;
+　　　　this.color = color;
+　　}
+　　var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+　　alert(cat1.species); // 动物
+</code></pre><h3 id="prototype-">prototype模式</h3>
+<pre><code>Cat.prototype = new Animal();
+　　Cat.prototype.constructor = Cat;
+　　var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+　　alert(cat1.species); // 动物
+</code></pre><h3 id="-prototype">直接继承prototype</h3>
+<pre><code>function Animal(){ }
+Animal.prototype.species = &quot;动物&quot;;
 
+Cat.prototype = Animal.prototype;
+Cat.prototype.constructor = Cat;
+var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+alert(cat1.species); // 动物
+</code></pre><h3 id="-">利用空对象作为中介</h3>
+<pre><code>var F = function(){};
+F.prototype = Animal.prototype;
+Cat.prototype = new F();
+Cat.prototype.constructor = Cat;
+</code></pre><h3 id="-">拷贝继承</h3>
+<pre><code>　　function extend2(Child, Parent) {
+　　　　var p = Parent.prototype;
+　　　　var c = Child.prototype;
+　　　　for (var i in p) {
+　　　　　　c[i] = p[i];
+　　　　　　}
+　　　　c.uber = p;
+　　}
+
+　　extend2(Cat, Animal);
+　　var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+　　alert(cat1.species); // 动物
+</code></pre>
           	</article>
         </div>
 		</div>
