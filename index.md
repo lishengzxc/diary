@@ -411,3 +411,55 @@ touchstart touchend (contentmenu)
 
 > #####clientX/pageX的区别在于前者相对于视觉视口，后者是布局视口，布局视口是可以滚动的
 
+#2015-6-15
+##javascript的继承方式
+###构造函数绑定
+```
+function Cat(name,color){
+　　　　Animal.apply(this, arguments);
+　　　　this.name = name;
+　　　　this.color = color;
+　　}
+　　var cat1 = new Cat("大毛","黄色");
+　　alert(cat1.species); // 动物
+```
+###prototype模式
+```
+Cat.prototype = new Animal();
+　　Cat.prototype.constructor = Cat;
+　　var cat1 = new Cat("大毛","黄色");
+　　alert(cat1.species); // 动物
+```
+###直接继承prototype
+```
+function Animal(){ }
+Animal.prototype.species = "动物";
+
+Cat.prototype = Animal.prototype;
+Cat.prototype.constructor = Cat;
+var cat1 = new Cat("大毛","黄色");
+alert(cat1.species); // 动物
+```
+###利用空对象作为中介
+```
+var F = function(){};
+F.prototype = Animal.prototype;
+Cat.prototype = new F();
+Cat.prototype.constructor = Cat;
+```
+###拷贝继承
+```
+　　function extend2(Child, Parent) {
+　　　　var p = Parent.prototype;
+　　　　var c = Child.prototype;
+　　　　for (var i in p) {
+　　　　　　c[i] = p[i];
+　　　　　　}
+　　　　c.uber = p;
+　　}
+
+　　extend2(Cat, Animal);
+　　var cat1 = new Cat("大毛","黄色");
+　　alert(cat1.species); // 动物
+```
+
