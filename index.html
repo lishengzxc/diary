@@ -457,6 +457,49 @@ Cat.prototype.constructor = Cat;
 　　extend2(Cat, Animal);
 　　var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
 　　alert(cat1.species); // 动物
+</code></pre><h1 id="2015-6-16">2015-6-16</h1>
+<h2 id="-">浅拷贝和深拷贝</h2>
+<pre><code>//浅拷贝
+function simpleClone(obj){
+  if(typeof obj !=&#39;object&#39;) return false;
+  var cloneObj={};
+  for(var i in obj) cloneObj[i]=obj[i];
+  return cloneObj;
+}
+//由于浅拷贝在复制对象中引用类型的属性时仅仅是复制地址，所以对克隆对象的该属性的操作也会影响到原来的对象。
+//请看下面例子
+var obj1={a:1,b:2,c:[1,2,3]};
+var obj2=simpleClone(obj1);
+console.log(obj1.c); //[1,2,3]
+console.log(obj2.c); //[1,2,3]
+obj2.c.push(4);
+console.log(obj2.c); //[1,2,3,4]
+console.log(obj1.c); //[1,2,3,4]   改变obj2.c的同时，也改变了obj1.c。因为两者都指向了堆内存中的同一个array对象
+
+
+//深拷贝
+function deepClone(obj,cloneObj){
+  if(typeof obj !=&#39;object&#39;) return false;
+  var cloneObj=cloneObj || {};
+  for(var i in obj){
+    if(typeof obj[i]===&#39;object&#39;){
+      cloneObj[i]=(obj[i] instanceof Array)?[]:{};
+      arguments.callee(obj[i],cloneObj[i]);
+    }else{
+      cloneObj[i]=obj[i];
+    }
+  }
+  return cloneObj;
+
+}
+//通过深拷贝就不是简单的复制引用类型的地址了
+var obj1={a:1,b:2,c:[1,2,3]};
+var obj2=deepClone(obj1);
+console.log(obj1.c); //[1,2,3]
+console.log(obj2.c); //[1,2,3]
+obj2.c.push(4);
+console.log(obj2.c); //[1,2,3,4]
+console.log(obj1.c); //[1,2,3]
 </code></pre>
           	</article>
         </div>
