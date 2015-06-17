@@ -509,3 +509,7 @@ console.log(obj2.c); //[1,2,3,4]
 console.log(obj1.c); //[1,2,3]
 ```
 
+#2015-6-17
+##`object-fit`
+[http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html](http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html)
+
