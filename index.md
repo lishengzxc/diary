@@ -513,3 +513,9 @@ console.log(obj1.c); //[1,2,3]
 ##`object-fit`
 [http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html](http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html)
 
+#2015-6-18
+##DOM操作的一些常见API
+getElementById,getElementsByClassName,getElementsByTagName,querySelector(All),createElement,innerText,appendChild,insertBefore,removeChild,innerHTML
+getAttribute,setAttribute,datalist
+style, style.cssText, class, styleSheet, window.getComputedStyle
+
