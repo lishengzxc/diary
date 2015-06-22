@@ -519,3 +519,11 @@ getElementById,getElementsByClassName,getElementsByTagName,querySelector(All),cr
 getAttribute,setAttribute,datalist
 style, style.cssText, class, styleSheet, window.getComputedStyle
 
+#2015-6-22
+##flex的两个公式
+###flex-grow
+flex-basis + flow-grow / sum(flow-grow) * remain
+###flex-shrink
+flex-basis + flex-shrink / sum(flex-shrink) * remain (remain为负数)
+
+
