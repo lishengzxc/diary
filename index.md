@@ -524,6 +524,6 @@ style, style.cssText, class, styleSheet, window.getComputedStyle
 ###flex-grow
 flex-basis + flow-grow / sum(flow-grow) * remain
 ###flex-shrink
-flex-basis + flex-shrink / sum(flex-shrink) * remain (remain为负数)
+flex-basis + flex-shrink / sum(flex-shrink) * remain (remain为负数) 其实就是将负空间按权值分配
 
 
