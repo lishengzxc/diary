@@ -517,6 +517,48 @@ style, style.cssText, class, styleSheet, window.getComputedStyle</p>
 <h1 id="2015-6-29">2015-6-29</h1>
 <h2 id="-">知乎上，前端开发领域有哪些值得推荐的问答</h2>
 <p><a href="http://www.zhihu.com/question/20246142?utm_source=weibo&amp;utm_medium=weibo_share&amp;utm_content=share_question&amp;utm_campaign=share_sidebar">http://www.zhihu.com/question/20246142?utm_source=weibo&amp;utm_medium=weibo_share&amp;utm_content=share_question&amp;utm_campaign=share_sidebar</a></p>
+<h2 id="-grunt-contrib-imagemin-jpg-">解决grunt-contrib-imagemin无法压缩jpg格式的问题</h2>
+<p>从相关的github issue来看，好像win7系统32位，64位都有如此问题。任务运行时，bug提示为：</p>
+<p><code>Running &quot;imagemin:dist&quot; (imagemin) task Fatal error: spawn ENOENT</code></p>
+<p>怎么解决呢？</p>
+<p>首先，在package.json文件中增加&quot;jpegtran-bin&quot;: &quot;0.2.0&quot;,必须写在grunt-contrib-imagemin依赖声明之前。注意，增加的版本号不需要&quot;~&quot;哦！</p>
+<p>比如我的package.json:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;grunt-test&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;dependencies&quot;: {
+    &quot;grunt-css-combo&quot;: &quot;~0.2.2&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;grunt&quot;: &quot;~0.4.2&quot;,
+    &quot;jpegtran-bin&quot;: &quot;0.2.0&quot;,
+    &quot;grunt-contrib-imagemin&quot;: &quot;~0.4.1&quot;
+  }
+}
+</code></pre><p>然后删掉本地的node_modules目录，重新安装。</p>
+<p>Gruntfile.js配置：</p>
+<pre><code>module.exports = function(grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON(&#39;package.json&#39;),
+        imagemin: {
+            /* 压缩图片大小 */
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: &quot;./dev/images/&quot;,
+                    src: [&quot;**/*.{jpg,png,gif}&quot;],
+                    dest: &quot;./official/images/&quot;
+                }]
+            }
+        }
+    });
+    grunt.loadNpmTasks(&#39;grunt-contrib-imagemin&#39;); //图像压缩
+
+    // 注册任务
+    grunt.registerTask(&#39;default&#39;, [&#39;imagemin&#39;]);
+};
+</code></pre><p>再次启动grunt任务命令，.jpg格式的图片全部可以压缩了。very nice！</p>
+<p><strong>注意更新使用grunt-contrib-imagemin的0.4.1 版本，因为最新版的会有同样问题。</strong></p>
 
           	</article>
         </div>

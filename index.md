@@ -530,4 +530,56 @@ flex-basis + flex-shrink / sum(flex-shrink) * remain (remain为负数) 其实就
 ##知乎上，前端开发领域有哪些值得推荐的问答
 [http://www.zhihu.com/question/20246142?utm_source=weibo&utm_medium=weibo_share&utm_content=share_question&utm_campaign=share_sidebar](http://www.zhihu.com/question/20246142?utm_source=weibo&utm_medium=weibo_share&utm_content=share_question&utm_campaign=share_sidebar)
 
+##解决grunt-contrib-imagemin无法压缩jpg格式的问题
+从相关的github issue来看，好像win7系统32位，64位都有如此问题。任务运行时，bug提示为：
+
+`Running "imagemin:dist" (imagemin) task Fatal error: spawn ENOENT`
+
+怎么解决呢？
+
+首先，在package.json文件中增加"jpegtran-bin": "0.2.0",必须写在grunt-contrib-imagemin依赖声明之前。注意，增加的版本号不需要"~"哦！
+
+比如我的package.json:
+```
+{
+  "name": "grunt-test",
+  "version": "0.1.0",
+  "dependencies": {
+    "grunt-css-combo": "~0.2.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "jpegtran-bin": "0.2.0",
+    "grunt-contrib-imagemin": "~0.4.1"
+  }
+}
+```
+然后删掉本地的node_modules目录，重新安装。
+
+Gruntfile.js配置：
+```
+module.exports = function(grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        imagemin: {
+            /* 压缩图片大小 */
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: "./dev/images/",
+                    src: ["**/*.{jpg,png,gif}"],
+                    dest: "./official/images/"
+                }]
+            }
+        }
+    });
+    grunt.loadNpmTasks('grunt-contrib-imagemin'); //图像压缩
+
+    // 注册任务
+    grunt.registerTask('default', ['imagemin']);
+};
+```
+再次启动grunt任务命令，.jpg格式的图片全部可以压缩了。very nice！
+
+**注意更新使用grunt-contrib-imagemin的0.4.1 版本，因为最新版的会有同样问题。**
 
