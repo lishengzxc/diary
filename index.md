@@ -526,4 +526,8 @@ flex-basis + flow-grow / sum(flow-grow) * remain
 ###flex-shrink
 flex-basis + flex-shrink / sum(flex-shrink) * remain (remain为负数) 其实就是将负空间按权值分配
 
+#2015-6-29
+##知乎上，前端开发领域有哪些值得推荐的问答
+[http://www.zhihu.com/question/20246142?utm_source=weibo&utm_medium=weibo_share&utm_content=share_question&utm_campaign=share_sidebar](http://www.zhihu.com/question/20246142?utm_source=weibo&utm_medium=weibo_share&utm_content=share_question&utm_campaign=share_sidebar)
+
 
