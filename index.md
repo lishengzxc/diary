@@ -583,3 +583,13 @@ module.exports = function(grunt) {
 
 **注意更新使用grunt-contrib-imagemin的0.4.1 版本，因为最新版的会有同样问题。**
 
+
+#2015-8-7
+##中英文两端对齐
+[http://www.zhangxinxu.com/wordpress/2015/08/chinese-english-same-padding-text-justify/](http://www.zhangxinxu.com/wordpress/2015/08/chinese-english-same-padding-text-justify/)
+```
+ox.style.textAlign = "justify";
+box.style.letterSpacing = '-.15em';
+box.innerHTML = box.innerHTML.split("").join(" ");
+```
+
