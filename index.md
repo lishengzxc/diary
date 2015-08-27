@@ -1,7 +1,7 @@
-#2015-5-24
-##事件级联
+# 2015-5-24
+## 事件级联
 当用户在移动装置上点击元素时，浏览器将激活事件。这个动作通常会触发一系列如下事件：`touchstart` → `touchend` → `mouseover` → `mousemove` → `mousedown` → `mouseup` → `click`。
-##移动端左右滑动
+## 移动端左右滑动
 ```
 var startX, startY, endX, endY;
 pBox.addEventListener('touchstart', function (e) {
@@ -28,23 +28,24 @@ pBox.addEventListener('touchend', function (e) {
 	}
 }, false);
 ```
-#2015-5-25
-##【网页设计简史】
-从早年的画表格、css的出现、flash动画，到后来的css+div定位、responsive design、flat design。  
+
+# 2015-5-25
+## 【网页设计简史】
+从早年的画表格、css的出现、flash动画，到后来的css+div定位、responsive design、flat design。
 [http://blog.froont.com/brief-history-of-web-design-for-designers/](http://blog.froont.com/brief-history-of-web-design-for-designers/)
-#2015-5-26
-##osx `git`自动补全
+# 2015-5-26
+## osx `git`自动补全
 [http://blog.csdn.net/zhangt85/article/details/43611997](http://blog.csdn.net/zhangt85/article/details/43611997)
-##`npm` 安装 `express`
+## `npm` 安装 `express`
 `npm install -g express-generator`
-#2015-5-27
-##页面可见性API属性和事件  
-- `document.hidden`: Boolean值，表示当前页面可见还是不可见  
+# 2015-5-27
+## 页面可见性API属性和事件
+- `document.hidden`: Boolean值，表示当前页面可见还是不可见
 - `document.visibilityState`: 返回当前页面的可见状态。
  1. `hidden`
  2. `visible`
  3. `prerender`
- 4. `preview`  
+ 4. `preview`
 - `visibilitychange`
 ```javascript
 document.addEventListener("visibilitychange", function() {
@@ -56,9 +57,9 @@ document.addEventListener("visibilitychange", function() {
 })
 ```
 
-#2015-5-28
-##Retina屏的移动设备如何实现真正1px的线
-###iOS 8 和 OS X Yosemite
+# 2015-5-28
+## Retina屏的移动设备如何实现真正1px的线
+### iOS 8 和 OS X Yosemite
 ```css
 div {
 	border: 1px solid #000;
@@ -69,7 +70,7 @@ div {
 	}
 }
 ```
-###兼容其他版本的Retina设备方案（ios）
+### 兼容其他版本的Retina设备方案（ios）
 ```javascript
 // 能力检测
 if (window.devicePixelRatio && window.devicePixelRatio >= 2) {
@@ -90,19 +91,19 @@ div {
 	border-width: 0.5px;
 }
 ```
-###兼容android
-淘宝 M 站是通过 viewport + rem 实现的  
+### 兼容android
+淘宝 M 站是通过 viewport + rem 实现的
 在devicePixelRatio = 2 时，输出 viewport
 ```html
 <meta name="viewport" content="initial-scale=0.5, miximum-scale=0.5, minimun-scale=0.5, user-scaleable=no">
 ```
-在devicePixelRatio = 3 时，输出 viewport  
+在devicePixelRatio = 3 时，输出 viewport
 ```html
 <meta name="viewport" content="initial-scale=0.3333333333, miximum-scale=0.3333333333, minimun-scale=0.3333333333, user-scaleable=no">
 ```
-###兼容的另一个方案 `伪类 + transform`
-原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位  
-####单条border
+### 兼容的另一个方案 `伪类 + transform`
+原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位
+#### 单条border
 ```css
 .hairlines li {
 	position: relative;
@@ -118,7 +119,7 @@ div {
 	transform: scaleY(0.5);
 }
 ```
-####四条border
+#### 四条border
 ```
 .hairlines li {
 	position: relative;
@@ -138,14 +139,14 @@ div {
 	transform-origin: left top;
 }
 ```
-####需要能力检测，该方案支持圆角
+#### 需要能力检测，该方案支持圆角
 ```
 if (window.devicePixelRatio && window.devicePixelRatio >= 2) {
 	document.querySelector('ul').className = 'hairlines';
 })
 ```
-#2015-5-29
-##`express.bodyParser()`已经不再支持了
+# 2015-5-29
+## `express.bodyParser()`已经不再支持了
 
 需要安装body-parser模块
 ```
@@ -155,12 +156,12 @@ npm install body-parser
 ```
 app.use(require('body-parser').urlencoded({extended: true}))
 ```
-##`<embed>`的一些笔记
-###`type`属性
+## `<embed>`的一些笔记
+### `type`属性
 ```
 <embed src="helloworld.swf" type="application/x-shockwave-flash" />
 ```
-###`allowscriptaccess`权限用法
+### `allowscriptaccess`权限用法
 使用 allowscriptaccess 使 Flash 应用程序可与其所在的 HTML 页通信。此参数是必需的，因为 fscommand() 和 getURL() 操作可能导致 JavaScript 使用 HTML 页的权限，而该权限可能与 Flash 应用程序的权限不同。这与跨域安全性有着重要关系。
 也就是说如果swf在blog.80s.net.cn下，但是页面在fmail.80s.net.cn下，想用getURL或者fscommand调用页面中的js是不可以的
 除非你将value设置为always
@@ -170,11 +171,11 @@ value参数说明：
 - samedomain 只有在 Flash 应用程序来自与 HTML 页相同的域时才允许执行脚本操作。
 
 所有 HTML 发布模板使用的默认值均为 samedomain。
-###flash `wmode`参数详解
+### flash `wmode`参数详解
 [http://www.blueidea.com/tech/web/2009/6469.asp](http://www.blueidea.com/tech/web/2009/6469.asp)
 
-#2015-5-30
-##`div`内图片垂直居中
+# 2015-5-30
+## `div`内图片垂直居中
 ```css
 div {
 	width:600px; height:600px;
@@ -189,36 +190,36 @@ img {
 ```html
 <div><span></span><img src="..."></div>
 ```
-##CSS3 object-position/object-fit属性
+## CSS3 object-position/object-fit属性
 [http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/](http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/)
 
-#2015-5-31
-##`git`删除分支
-###本地
+# 2015-5-31
+## `git`删除分支
+### 本地
 ```
 git branch -d <name>
 ```
-###远程
+### 远程
 ```
 git push origin :<name>
 ```
-##`git`版本回退
+## `git`版本回退
 ```
 git reset --hard commit_id
 ```
 [http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000)
-##`git`回退修改
-###工作区修改
+## `git`回退修改
+### 工作区修改
 ```
 git checkout -- file
 ```
-###暂存区修改
+### 暂存区修改
 ```
 git reset HEAD file
 ```
 
-#2015-6-2
-##`flex`兼容
+# 2015-6-2
+## `flex`兼容
 ```
 .foo{
   display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
@@ -229,7 +230,7 @@ git reset HEAD file
   display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */}
 ```
 
-##`getArgs()`
+## `getArgs()`
 ```
 function getArgs() {
     var args = {};
@@ -248,16 +249,16 @@ function getArgs() {
 }
 ```
 
-#2015-6-4
-##`clearfix`
+# 2015-6-4
+## `clearfix`
 ```
 .clearfix:after {content:"."; display:block; height:0; visibility:hidden; clear:both; }
 
 .clearfix { *zoom:1; }
 ```
 
-#2015-6-6
-##IE6~8部署`Function.prototype.bind()`
+# 2015-6-6
+## IE6~8部署`Function.prototype.bind()`
 ```
 if (!function() {}.bind) {
     Function.prototype.bind = function(context) {
@@ -270,28 +271,28 @@ if (!function() {}.bind) {
     };
 }
 ```
-##将类数组转化为真实数组
+## 将类数组转化为真实数组
 ```
 trueArr = Array.prototype.slice.call(likeArr);
 ```
 
-#2015-6-7
-##CSS3的新单位
-###ch
+# 2015-6-7
+## CSS3的新单位
+### ch
 数字“0”的宽度
-###rem
+### rem
 相对长度单位。相对于根元素(即html元素)font-size计算值的倍数
-###vw
+### vw
 相对于视口的宽度。视口被均分为100单位的vw
-###vh
+### vh
 相对于视口的高度。视口被均分为100单位的vh
-###vmax
+### vmax
 相对于视口的宽度或高度中较大的那个。其中最大的那个被均分为100单位的vmax
-###vmin
+### vmin
 相对于视口的宽度或高度中较小的那个。其中最小的那个被均分为100单位的vmin
 
-#2015-6-8
-##css3动画移动端过场效果
+# 2015-6-8
+## css3动画移动端过场效果
 ```
 .slide.in {
   -webkit-animation-name: slideinfromright;
@@ -382,38 +383,38 @@ trueArr = Array.prototype.slice.call(likeArr);
 }
 ```
 
-#2015-6-12
-##angular中指令遇到的坑
+# 2015-6-12
+## angular中指令遇到的坑
 [http://segmentfault.com/q/1010000002897406](http://segmentfault.com/q/1010000002897406)
 解决方案
 link中，用timeout延时操作下
-##触摸事件级链
+## 触摸事件级链
 
 
-###滑动
+### 滑动
 ```
 touchstart touchmove touchend scroll
 ```
-###缩放
+### 缩放
 ```
 touchstart touchmove touchend scorll resize
 ```
-###双触
+### 双触
 ```
 touchstart 两次touchend scroll resize
 ```
-###按住
+### 按住
 ```
 touchstart touchend (contentmenu)
 ```
 
-###触摸事件有一个鼠标事件没有的特性 touchList（记录多个触点）
+### 触摸事件有一个鼠标事件没有的特性 touchList（记录多个触点）
 
-> #####clientX/pageX的区别在于前者相对于视觉视口，后者是布局视口，布局视口是可以滚动的
+> ##### clientX/pageX的区别在于前者相对于视觉视口，后者是布局视口，布局视口是可以滚动的
 
-#2015-6-15
-##javascript的继承方式
-###构造函数绑定
+# 2015-6-15
+## javascript的继承方式
+### 构造函数绑定
 ```
 function Cat(name,color){
 　　　　Animal.apply(this, arguments);
@@ -423,14 +424,14 @@ function Cat(name,color){
 　　var cat1 = new Cat("大毛","黄色");
 　　alert(cat1.species); // 动物
 ```
-###prototype模式
+### prototype模式
 ```
 Cat.prototype = new Animal();
 　　Cat.prototype.constructor = Cat;
 　　var cat1 = new Cat("大毛","黄色");
 　　alert(cat1.species); // 动物
 ```
-###直接继承prototype
+### 直接继承prototype
 ```
 function Animal(){ }
 Animal.prototype.species = "动物";
@@ -440,14 +441,14 @@ Cat.prototype.constructor = Cat;
 var cat1 = new Cat("大毛","黄色");
 alert(cat1.species); // 动物
 ```
-###利用空对象作为中介
+### 利用空对象作为中介
 ```
 var F = function(){};
 F.prototype = Animal.prototype;
 Cat.prototype = new F();
 Cat.prototype.constructor = Cat;
 ```
-###拷贝继承
+### 拷贝继承
 ```
 　　function extend2(Child, Parent) {
 　　　　var p = Parent.prototype;
@@ -463,8 +464,8 @@ Cat.prototype.constructor = Cat;
 　　alert(cat1.species); // 动物
 ```
 
-#2015-6-16
-##浅拷贝和深拷贝
+# 2015-6-16
+## 浅拷贝和深拷贝
 ```
 //浅拷贝
 function simpleClone(obj){
@@ -509,28 +510,28 @@ console.log(obj2.c); //[1,2,3,4]
 console.log(obj1.c); //[1,2,3]
 ```
 
-#2015-6-17
-##`object-fit`
+# 2015-6-17
+## `object-fit`
 [http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html](http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html)
 
-#2015-6-18
-##DOM操作的一些常见API
+# 2015-6-18
+## DOM操作的一些常见API
 getElementById,getElementsByClassName,getElementsByTagName,querySelector(All),createElement,innerText,appendChild,insertBefore,removeChild,innerHTML
 getAttribute,setAttribute,datalist
 style, style.cssText, class, styleSheet, window.getComputedStyle
 
-#2015-6-22
-##flex的两个公式
-###flex-grow
+# 2015-6-22
+## flex的两个公式
+### flex-grow
 flex-basis + flow-grow / sum(flow-grow) * remain
 ###flex-shrink
 flex-basis + flex-shrink / sum(flex-shrink) * remain (remain为负数) 其实就是将负空间按权值分配
 
-#2015-6-29
-##知乎上，前端开发领域有哪些值得推荐的问答
+# 2015-6-29
+## 知乎上，前端开发领域有哪些值得推荐的问答
 [http://www.zhihu.com/question/20246142?utm_source=weibo&utm_medium=weibo_share&utm_content=share_question&utm_campaign=share_sidebar](http://www.zhihu.com/question/20246142?utm_source=weibo&utm_medium=weibo_share&utm_content=share_question&utm_campaign=share_sidebar)
 
-##解决grunt-contrib-imagemin无法压缩jpg格式的问题
+## 解决grunt-contrib-imagemin无法压缩jpg格式的问题
 从相关的github issue来看，好像win7系统32位，64位都有如此问题。任务运行时，bug提示为：
 
 `Running "imagemin:dist" (imagemin) task Fatal error: spawn ENOENT`
@@ -584,8 +585,8 @@ module.exports = function(grunt) {
 **注意更新使用grunt-contrib-imagemin的0.4.1 版本，因为最新版的会有同样问题。**
 
 
-#2015-8-7
-##中英文两端对齐
+# 2015-8-7
+## 中英文两端对齐
 [http://www.zhangxinxu.com/wordpress/2015/08/chinese-english-same-padding-text-justify/](http://www.zhangxinxu.com/wordpress/2015/08/chinese-english-same-padding-text-justify/)
 ```
 ox.style.textAlign = "justify";

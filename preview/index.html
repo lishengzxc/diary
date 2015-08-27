@@ -1,0 +1,591 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:index</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="2015-5-24">2015-5-24</h1>
+<h2 id="-">事件级联</h2>
+<p>当用户在移动装置上点击元素时，浏览器将激活事件。这个动作通常会触发一系列如下事件：<code>touchstart</code> → <code>touchend</code> → <code>mouseover</code> → <code>mousemove</code> → <code>mousedown</code> → <code>mouseup</code> → <code>click</code>。</p>
+<h2 id="-">移动端左右滑动</h2>
+<pre><code>var startX, startY, endX, endY;
+pBox.addEventListener(&#39;touchstart&#39;, function (e) {
+    var touch = e.touches[0];
+          startY = touch.pageY;
+          startX = touch.pageX;
+}, false)
+pBox.addEventListener(&#39;touchmove&#39;, function (e) {
+    var touch = e.touches[0];
+    endX = touch.pageX;
+    endY = touch.pageY;
+}, false)
+pBox.addEventListener(&#39;touchend&#39;, function (e) {
+    if ((startX - endX) &gt; 0) {
+        for (var i = 0; i &lt; pList.length; i++) {
+            pList[i].style.left = parseInt(pList[i].style.left) - 100 + &#39;%&#39;;
+            // console.log(parseInt(pList[i].style.left));
+        }
+    } else if (startX - endX &lt; 0) {
+        for (var i = 0; i &lt; pList.length; i++) {
+            pList[i].style.left = parseInt(pList[i].style.left) + 100 + &#39;%&#39;;
+            // console.log(parseInt(pList[i].style.left));
+        }
+    }
+}, false);
+</code></pre><h1 id="2015-5-25">2015-5-25</h1>
+<h2 id="-">【网页设计简史】</h2>
+<p>从早年的画表格、css的出现、flash动画，到后来的css+div定位、responsive design、flat design。
+<a href="http://blog.froont.com/brief-history-of-web-design-for-designers/">http://blog.froont.com/brief-history-of-web-design-for-designers/</a></p>
+<h1 id="2015-5-26">2015-5-26</h1>
+<h2 id="osx-git-">osx <code>git</code>自动补全</h2>
+<p><a href="http://blog.csdn.net/zhangt85/article/details/43611997">http://blog.csdn.net/zhangt85/article/details/43611997</a></p>
+<h2 id="-npm-express-"><code>npm</code> 安装 <code>express</code></h2>
+<p><code>npm install -g express-generator</code></p>
+<h1 id="2015-5-27">2015-5-27</h1>
+<h2 id="-api-">页面可见性API属性和事件</h2>
+<ul>
+<li><code>document.hidden</code>: Boolean值，表示当前页面可见还是不可见</li>
+<li><code>document.visibilityState</code>: 返回当前页面的可见状态。<ol>
+<li><code>hidden</code></li>
+<li><code>visible</code></li>
+<li><code>prerender</code></li>
+<li><code>preview</code></li>
+</ol>
+</li>
+<li><code>visibilitychange</code><pre><code class="lang-javascript">document.addEventListener(&quot;visibilitychange&quot;, function() {
+  if (document.hidden) {
+      document.title = 1;
+  } else {
+      document.title = 2;
+  }
+})
+</code></pre>
+</li>
+</ul>
+<h1 id="2015-5-28">2015-5-28</h1>
+<h2 id="retina-1px-">Retina屏的移动设备如何实现真正1px的线</h2>
+<h3 id="ios-8-os-x-yosemite">iOS 8 和 OS X Yosemite</h3>
+<pre><code class="lang-css">div {
+    border: 1px solid #000;
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+    div {
+        border: 0.5px
+    }
+}
+</code></pre>
+<h3 id="-retina-ios-">兼容其他版本的Retina设备方案（ios）</h3>
+<pre><code class="lang-javascript">// 能力检测
+if (window.devicePixelRatio &amp;&amp; window.devicePixelRatio &gt;= 2) {
+    var elem = document.createElement(&#39;div&#39;);
+    elem.style.border = &#39;.5px solid transparent&#39;;
+    document.body.appendChild(elem);
+    if (elem.offsetHeight == 1) {
+        document.querySelector(&#39;html&#39;).classList.add(&#39;hairlines&#39;);
+    }
+    document.body.removeChild(elem);
+}
+</code></pre>
+<pre><code class="lang-css">div {
+    border: 1px solid #bbb;
+}
+.hairlines div {
+    border-width: 0.5px;
+}
+</code></pre>
+<h3 id="-android">兼容android</h3>
+<p>淘宝 M 站是通过 viewport + rem 实现的
+在devicePixelRatio = 2 时，输出 viewport</p>
+<pre><code class="lang-html">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=0.5, miximum-scale=0.5, minimun-scale=0.5, user-scaleable=no&quot;&gt;
+</code></pre>
+<p>在devicePixelRatio = 3 时，输出 viewport</p>
+<pre><code class="lang-html">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=0.3333333333, miximum-scale=0.3333333333, minimun-scale=0.3333333333, user-scaleable=no&quot;&gt;
+</code></pre>
+<h3 id="-transform-">兼容的另一个方案 <code>伪类 + transform</code></h3>
+<p>原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位</p>
+<h4 id="-border">单条border</h4>
+<pre><code class="lang-css">.hairlines li {
+    position: relative;
+    border: none;
+}
+.hairline li:after {
+    content: &#39;&#39;;
+    position: absolute;
+    left: 0;
+    background: #000;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
+}
+</code></pre>
+<h4 id="-border">四条border</h4>
+<pre><code>.hairlines li {
+    position: relative;
+    margin-bottom: 20px;
+    border: none;
+}
+.hairline li:after {
+    content: &#39;&#39;;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: left top;
+}
+</code></pre><h4 id="-">需要能力检测，该方案支持圆角</h4>
+<pre><code>if (window.devicePixelRatio &amp;&amp; window.devicePixelRatio &gt;= 2) {
+    document.querySelector(&#39;ul&#39;).className = &#39;hairlines&#39;;
+})
+</code></pre><h1 id="2015-5-29">2015-5-29</h1>
+<h2 id="-express-bodyparser-"><code>express.bodyParser()</code>已经不再支持了</h2>
+<p>需要安装body-parser模块</p>
+<pre><code>npm install body-parser
+</code></pre><p>然后使用代码为：</p>
+<pre><code>app.use(require(&#39;body-parser&#39;).urlencoded({extended: true}))
+</code></pre><h2 id="-embed-"><code>&lt;embed&gt;</code>的一些笔记</h2>
+<h3 id="-type-"><code>type</code>属性</h3>
+<pre><code>&lt;embed src=&quot;helloworld.swf&quot; type=&quot;application/x-shockwave-flash&quot; /&gt;
+</code></pre><h3 id="-allowscriptaccess-"><code>allowscriptaccess</code>权限用法</h3>
+<p>使用 allowscriptaccess 使 Flash 应用程序可与其所在的 HTML 页通信。此参数是必需的，因为 fscommand() 和 getURL() 操作可能导致 JavaScript 使用 HTML 页的权限，而该权限可能与 Flash 应用程序的权限不同。这与跨域安全性有着重要关系。
+也就是说如果swf在blog.80s.net.cn下，但是页面在fmail.80s.net.cn下，想用getURL或者fscommand调用页面中的js是不可以的
+除非你将value设置为always
+value参数说明：</p>
+<ul>
+<li>always 允许随时执行脚本操作。</li>
+<li>never 禁止所有脚本执行操作。</li>
+<li>samedomain 只有在 Flash 应用程序来自与 HTML 页相同的域时才允许执行脚本操作。</li>
+</ul>
+<p>所有 HTML 发布模板使用的默认值均为 samedomain。</p>
+<h3 id="flash-wmode-">flash <code>wmode</code>参数详解</h3>
+<p><a href="http://www.blueidea.com/tech/web/2009/6469.asp">http://www.blueidea.com/tech/web/2009/6469.asp</a></p>
+<h1 id="2015-5-30">2015-5-30</h1>
+<h2 id="-div-"><code>div</code>内图片垂直居中</h2>
+<pre><code class="lang-css">div {
+    width:600px; height:600px;
+}
+span {
+    height: 100%; display: inline-block; vertical-align: middle;
+}
+img {
+    width: 300px; height: 300px; vertical-align: middle;
+}
+</code></pre>
+<pre><code class="lang-html">&lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;img src=&quot;...&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="css3-object-position-object-fit-">CSS3 object-position/object-fit属性</h2>
+<p><a href="http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/">http://www.zhangxinxu.com/wordpress/2015/03/css3-object-position-object-fit/comment-page-1/</a></p>
+<h1 id="2015-5-31">2015-5-31</h1>
+<h2 id="-git-"><code>git</code>删除分支</h2>
+<h3 id="-">本地</h3>
+<pre><code>git branch -d &lt;name&gt;
+</code></pre><h3 id="-">远程</h3>
+<pre><code>git push origin :&lt;name&gt;
+</code></pre><h2 id="-git-"><code>git</code>版本回退</h2>
+<pre><code>git reset --hard commit_id
+</code></pre><p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000">http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000</a></p>
+<h2 id="-git-"><code>git</code>回退修改</h2>
+<h3 id="-">工作区修改</h3>
+<pre><code>git checkout -- file
+</code></pre><h3 id="-">暂存区修改</h3>
+<pre><code>git reset HEAD file
+</code></pre><h1 id="2015-6-2">2015-6-2</h1>
+<h2 id="-flex-"><code>flex</code>兼容</h2>
+<pre><code>.foo{
+  display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box; /* Firefox 17- */
+  display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex; /* Firefox 18+ */
+  display: -ms-flexbox; /* IE 10 */
+  display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */}
+</code></pre><h2 id="-getargs-"><code>getArgs()</code></h2>
+<pre><code>function getArgs() {
+    var args = {};
+    var query = location.search.substring(1);
+    var pairs = query.split(&quot;&amp;&quot;);
+
+    for(var i = 0; i &lt; pairs.length; i++) {
+        var pos = pairs[i].indexOf(&#39;=&#39;);
+        if (pos == -1) continue;
+            var argname = pairs[i].substring(0,pos);
+            var value = pairs[i].substring(pos+1);
+            value = decodeURIComponent(value);
+            args[argname] = value;
+    }
+    return args;
+}
+</code></pre><h1 id="2015-6-4">2015-6-4</h1>
+<h2 id="-clearfix-"><code>clearfix</code></h2>
+<pre><code>.clearfix:after {content:&quot;.&quot;; display:block; height:0; visibility:hidden; clear:both; }
+
+.clearfix { *zoom:1; }
+</code></pre><h1 id="2015-6-6">2015-6-6</h1>
+<h2 id="ie6-8-function-prototype-bind-">IE6~8部署<code>Function.prototype.bind()</code></h2>
+<pre><code>if (!function() {}.bind) {
+    Function.prototype.bind = function(context) {
+        var self = this
+            , args = Array.prototype.slice.call(arguments);
+
+        return function() {
+            return self.apply(context, args.slice(1));
+        }
+    };
+}
+</code></pre><h2 id="-">将类数组转化为真实数组</h2>
+<pre><code>trueArr = Array.prototype.slice.call(likeArr);
+</code></pre><h1 id="2015-6-7">2015-6-7</h1>
+<h2 id="css3-">CSS3的新单位</h2>
+<h3 id="ch">ch</h3>
+<p>数字“0”的宽度</p>
+<h3 id="rem">rem</h3>
+<p>相对长度单位。相对于根元素(即html元素)font-size计算值的倍数</p>
+<h3 id="vw">vw</h3>
+<p>相对于视口的宽度。视口被均分为100单位的vw</p>
+<h3 id="vh">vh</h3>
+<p>相对于视口的高度。视口被均分为100单位的vh</p>
+<h3 id="vmax">vmax</h3>
+<p>相对于视口的宽度或高度中较大的那个。其中最大的那个被均分为100单位的vmax</p>
+<h3 id="vmin">vmin</h3>
+<p>相对于视口的宽度或高度中较小的那个。其中最小的那个被均分为100单位的vmin</p>
+<h1 id="2015-6-8">2015-6-8</h1>
+<h2 id="css3-">css3动画移动端过场效果</h2>
+<pre><code>.slide.in {
+  -webkit-animation-name: slideinfromright;
+  animation-name: slideinfromright;
+}
+.slide.out {
+  -webkit-animation-name: slideouttoleft;
+  animation-name: slideouttoleft;
+}
+.slide.reverse.out {
+  -webkit-animation-name: slideouttoright;
+  animation-name: slideouttoright;
+}
+.slide.reverse.in {
+  -webkit-animation-name: slideinfromleft;
+  animation-name: slideinfromleft;
+}
+
+/* keyframes for slidein from sides */
+@-webkit-keyframes slideinfromright {
+  from { -webkit-transform: translate3d(100%,0,0); }
+  to { -webkit-transform: translate3d(0,0,0); }
+}
+@keyframes slideinfromright {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@-webkit-keyframes slideinfromleft {
+  from { -webkit-transform: translate3d(-100%,0,0); }
+  to { -webkit-transform: translate3d(0,0,0); }
+}
+@keyframes slideinfromleft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+/* keyframes for slideout to sides */
+@-webkit-keyframes slideouttoleft {
+  from { -webkit-transform: translate3d(0,0,0); }
+  to { -webkit-transform: translate3d(-100%,0,0); }
+}
+@keyframes slideouttoleft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+@-webkit-keyframes slideouttoright {
+  from { -webkit-transform: translate3d(0,0,0); }
+  to { -webkit-transform: translate3d(100%,0,0); }
+}
+@keyframes slideouttoright {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+/* chrysanthemum loading effect */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.recommendItem {
+
+}
+
+.out {
+  display: none;
+}
+
+.in, .out {
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.in {
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-duration: 350ms;
+  animation-timing-function: ease-in;
+  animation-duration: 350ms;
+}
+.out {
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-duration: 350ms;
+  animation-timing-function: ease-in;
+  animation-duration: 350ms;
+}
+</code></pre><h1 id="2015-6-12">2015-6-12</h1>
+<h2 id="angular-">angular中指令遇到的坑</h2>
+<p><a href="http://segmentfault.com/q/1010000002897406">http://segmentfault.com/q/1010000002897406</a>
+解决方案
+link中，用timeout延时操作下</p>
+<h2 id="-">触摸事件级链</h2>
+<h3 id="-">滑动</h3>
+<pre><code>touchstart touchmove touchend scroll
+</code></pre><h3 id="-">缩放</h3>
+<pre><code>touchstart touchmove touchend scorll resize
+</code></pre><h3 id="-">双触</h3>
+<pre><code>touchstart 两次touchend scroll resize
+</code></pre><h3 id="-">按住</h3>
+<pre><code>touchstart touchend (contentmenu)
+</code></pre><h3 id="-touchlist-">触摸事件有一个鼠标事件没有的特性 touchList（记录多个触点）</h3>
+<blockquote>
+<h5 id="clientx-pagex-">clientX/pageX的区别在于前者相对于视觉视口，后者是布局视口，布局视口是可以滚动的</h5>
+</blockquote>
+<h1 id="2015-6-15">2015-6-15</h1>
+<h2 id="javascript-">javascript的继承方式</h2>
+<h3 id="-">构造函数绑定</h3>
+<pre><code>function Cat(name,color){
+　　　　Animal.apply(this, arguments);
+　　　　this.name = name;
+　　　　this.color = color;
+　　}
+　　var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+　　alert(cat1.species); // 动物
+</code></pre><h3 id="prototype-">prototype模式</h3>
+<pre><code>Cat.prototype = new Animal();
+　　Cat.prototype.constructor = Cat;
+　　var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+　　alert(cat1.species); // 动物
+</code></pre><h3 id="-prototype">直接继承prototype</h3>
+<pre><code>function Animal(){ }
+Animal.prototype.species = &quot;动物&quot;;
+
+Cat.prototype = Animal.prototype;
+Cat.prototype.constructor = Cat;
+var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+alert(cat1.species); // 动物
+</code></pre><h3 id="-">利用空对象作为中介</h3>
+<pre><code>var F = function(){};
+F.prototype = Animal.prototype;
+Cat.prototype = new F();
+Cat.prototype.constructor = Cat;
+</code></pre><h3 id="-">拷贝继承</h3>
+<pre><code>　　function extend2(Child, Parent) {
+　　　　var p = Parent.prototype;
+　　　　var c = Child.prototype;
+　　　　for (var i in p) {
+　　　　　　c[i] = p[i];
+　　　　　　}
+　　　　c.uber = p;
+　　}
+
+　　extend2(Cat, Animal);
+　　var cat1 = new Cat(&quot;大毛&quot;,&quot;黄色&quot;);
+　　alert(cat1.species); // 动物
+</code></pre><h1 id="2015-6-16">2015-6-16</h1>
+<h2 id="-">浅拷贝和深拷贝</h2>
+<pre><code>//浅拷贝
+function simpleClone(obj){
+  if(typeof obj !=&#39;object&#39;) return false;
+  var cloneObj={};
+  for(var i in obj) cloneObj[i]=obj[i];
+  return cloneObj;
+}
+//由于浅拷贝在复制对象中引用类型的属性时仅仅是复制地址，所以对克隆对象的该属性的操作也会影响到原来的对象。
+//请看下面例子
+var obj1={a:1,b:2,c:[1,2,3]};
+var obj2=simpleClone(obj1);
+console.log(obj1.c); //[1,2,3]
+console.log(obj2.c); //[1,2,3]
+obj2.c.push(4);
+console.log(obj2.c); //[1,2,3,4]
+console.log(obj1.c); //[1,2,3,4]   改变obj2.c的同时，也改变了obj1.c。因为两者都指向了堆内存中的同一个array对象
+
+
+//深拷贝
+function deepClone(obj,cloneObj){
+  if(typeof obj !=&#39;object&#39;) return false;
+  var cloneObj=cloneObj || {};
+  for(var i in obj){
+    if(typeof obj[i]===&#39;object&#39;){
+      cloneObj[i]=(obj[i] instanceof Array)?[]:{};
+      arguments.callee(obj[i],cloneObj[i]);
+    }else{
+      cloneObj[i]=obj[i];
+    }
+  }
+  return cloneObj;
+
+}
+//通过深拷贝就不是简单的复制引用类型的地址了
+var obj1={a:1,b:2,c:[1,2,3]};
+var obj2=deepClone(obj1);
+console.log(obj1.c); //[1,2,3]
+console.log(obj2.c); //[1,2,3]
+obj2.c.push(4);
+console.log(obj2.c); //[1,2,3,4]
+console.log(obj1.c); //[1,2,3]
+</code></pre><h1 id="2015-6-17">2015-6-17</h1>
+<h2 id="-object-fit-"><code>object-fit</code></h2>
+<p><a href="http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html">http://www.w3cplus.com/css3/css3-object-fit-and-object-position-properties.html</a></p>
+<h1 id="2015-6-18">2015-6-18</h1>
+<h2 id="dom-api">DOM操作的一些常见API</h2>
+<p>getElementById,getElementsByClassName,getElementsByTagName,querySelector(All),createElement,innerText,appendChild,insertBefore,removeChild,innerHTML
+getAttribute,setAttribute,datalist
+style, style.cssText, class, styleSheet, window.getComputedStyle</p>
+<h1 id="2015-6-22">2015-6-22</h1>
+<h2 id="flex-">flex的两个公式</h2>
+<h3 id="flex-grow">flex-grow</h3>
+<p>flex-basis + flow-grow / sum(flow-grow) * remain</p>
+<p>###flex-shrink
+flex-basis + flex-shrink / sum(flex-shrink) * remain (remain为负数) 其实就是将负空间按权值分配</p>
+<h1 id="2015-6-29">2015-6-29</h1>
+<h2 id="-">知乎上，前端开发领域有哪些值得推荐的问答</h2>
+<p><a href="http://www.zhihu.com/question/20246142?utm_source=weibo&amp;utm_medium=weibo_share&amp;utm_content=share_question&amp;utm_campaign=share_sidebar">http://www.zhihu.com/question/20246142?utm_source=weibo&amp;utm_medium=weibo_share&amp;utm_content=share_question&amp;utm_campaign=share_sidebar</a></p>
+<h2 id="-grunt-contrib-imagemin-jpg-">解决grunt-contrib-imagemin无法压缩jpg格式的问题</h2>
+<p>从相关的github issue来看，好像win7系统32位，64位都有如此问题。任务运行时，bug提示为：</p>
+<p><code>Running &quot;imagemin:dist&quot; (imagemin) task Fatal error: spawn ENOENT</code></p>
+<p>怎么解决呢？</p>
+<p>首先，在package.json文件中增加&quot;jpegtran-bin&quot;: &quot;0.2.0&quot;,必须写在grunt-contrib-imagemin依赖声明之前。注意，增加的版本号不需要&quot;~&quot;哦！</p>
+<p>比如我的package.json:</p>
+<pre><code>{
+  &quot;name&quot;: &quot;grunt-test&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;dependencies&quot;: {
+    &quot;grunt-css-combo&quot;: &quot;~0.2.2&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;grunt&quot;: &quot;~0.4.2&quot;,
+    &quot;jpegtran-bin&quot;: &quot;0.2.0&quot;,
+    &quot;grunt-contrib-imagemin&quot;: &quot;~0.4.1&quot;
+  }
+}
+</code></pre><p>然后删掉本地的node_modules目录，重新安装。</p>
+<p>Gruntfile.js配置：</p>
+<pre><code>module.exports = function(grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON(&#39;package.json&#39;),
+        imagemin: {
+            /* 压缩图片大小 */
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: &quot;./dev/images/&quot;,
+                    src: [&quot;**/*.{jpg,png,gif}&quot;],
+                    dest: &quot;./official/images/&quot;
+                }]
+            }
+        }
+    });
+    grunt.loadNpmTasks(&#39;grunt-contrib-imagemin&#39;); //图像压缩
+
+    // 注册任务
+    grunt.registerTask(&#39;default&#39;, [&#39;imagemin&#39;]);
+};
+</code></pre><p>再次启动grunt任务命令，.jpg格式的图片全部可以压缩了。very nice！</p>
+<p><strong>注意更新使用grunt-contrib-imagemin的0.4.1 版本，因为最新版的会有同样问题。</strong></p>
+<h1 id="2015-8-7">2015-8-7</h1>
+<h2 id="-">中英文两端对齐</h2>
+<p><a href="http://www.zhangxinxu.com/wordpress/2015/08/chinese-english-same-padding-text-justify/">http://www.zhangxinxu.com/wordpress/2015/08/chinese-english-same-padding-text-justify/</a></p>
+<pre><code>ox.style.textAlign = &quot;justify&quot;;
+box.style.letterSpacing = &#39;-.15em&#39;;
+box.innerHTML = box.innerHTML.split(&quot;&quot;).join(&quot; &quot;);
+</code></pre>
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
