@@ -70,6 +70,7 @@
 <p>当用户在移动装置上点击元素时，浏览器将激活事件。这个动作通常会触发一系列如下事件：<code>touchstart</code> → <code>touchend</code> → <code>mouseover</code> → <code>mousemove</code> → <code>mousedown</code> → <code>mouseup</code> → <code>click</code>。</p>
 <h2 id="-">移动端左右滑动</h2>
 <pre><code>var startX, startY, endX, endY;
+
 pBox.addEventListener(&#39;touchstart&#39;, function (e) {
     var touch = e.touches[0];
           startY = touch.pageY;
