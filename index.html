@@ -654,6 +654,17 @@ function throttle(fn, threshhold) {
 $(document).on(&#39;mouvemove&#39;, throttle(function(e) {
     // 代码
 }, 250))
+</code></pre><h1 id="2015-10-20">2015-10-20</h1>
+<h2 id="uuid">uuid</h2>
+<pre><code>function uuid() {
+  var d = new Date().getTime();
+  var uuid = &#39;xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx&#39;.replace(/[xy]/g, function(c) {
+    var r = (d + Math.random()*16)%16 | 0;
+    d = Math.floor(d/16);
+    return (c==&#39;x&#39; ? r : (r&amp;0x3|0x8)).toString(16);
+  });
+  return uuid;
+}
 </code></pre>
           	</article>
         </div>
