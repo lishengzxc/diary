@@ -4,6 +4,7 @@
 ## 移动端左右滑动
 ```
 var startX, startY, endX, endY;
+
 pBox.addEventListener('touchstart', function (e) {
 	var touch = e.touches[0];
           startY = touch.pageY;
